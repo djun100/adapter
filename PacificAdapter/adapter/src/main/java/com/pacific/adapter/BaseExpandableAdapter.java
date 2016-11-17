@@ -184,7 +184,7 @@ abstract class BaseExpandableAdapter<T, V, H extends ExpandableAdapterHelper> ex
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         H help = getAdapterHelper(groupPosition, childPosition, convertView, parent);
         V childItem = getChild(groupPosition, childPosition);
-        convertChildView(isLastChild, help, childItem);
+        convertChildView(isLastChild, help, childItem,childPosition);
         return help.getItemView();
     }
 
@@ -210,7 +210,7 @@ abstract class BaseExpandableAdapter<T, V, H extends ExpandableAdapterHelper> ex
 
     protected abstract void convertGroupView(boolean isExpanded, H helper, T item);
 
-    protected abstract void convertChildView(boolean isLastChild, H helper, V item);
+    protected abstract void convertChildView(boolean isLastChild, H helper, V item,int childPosition);
 
     protected abstract H getAdapterHelper(int groupPosition, int childPosition, View convertView, ViewGroup parent);
 }

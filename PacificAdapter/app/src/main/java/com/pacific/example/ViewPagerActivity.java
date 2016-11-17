@@ -1,11 +1,8 @@
 package com.pacific.example;
 
-import android.os.Environment;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Environment;
+import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +11,7 @@ import android.widget.ImageView;
 
 import com.pacific.adapter.PagerAdapterHelper;
 import com.pacific.adapter.ViewPagerAdapter;
-import com.trello.rxlifecycle.ActivityEvent;
+import com.trello.rxlifecycle.android.ActivityEvent;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import java.io.File;

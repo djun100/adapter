@@ -3,7 +3,6 @@ package com.pacific.example;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,18 +10,16 @@ import android.widget.ExpandableListView;
 
 import com.pacific.adapter.ExpandableAdapter;
 import com.pacific.adapter.ExpandableAdapterHelper;
-import com.trello.rxlifecycle.FragmentEvent;
+import com.trello.rxlifecycle.android.FragmentEvent;
 import com.trello.rxlifecycle.components.support.RxFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observable;
-import rx.Scheduler;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func1;
-import rx.observers.Observers;
 import rx.schedulers.Schedulers;
 
 
@@ -69,7 +66,7 @@ public class ExpandableListViewFragment extends RxFragment {
             }
 
             @Override
-            protected void convertChildView(boolean isLastChild, final ExpandableAdapterHelper helper, ExploreBean item) {
+            protected void convertChildView(boolean isLastChild, final ExpandableAdapterHelper helper, ExploreBean item,int childPosition) {
                 helper.setText(R.id.tv_explore_name, item.getDescription())
                         .getItemView().setOnClickListener(new View.OnClickListener() {
                     @Override

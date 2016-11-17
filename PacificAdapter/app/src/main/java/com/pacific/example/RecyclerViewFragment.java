@@ -9,9 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.pacific.adapter.RecyclerAdapterHelper;
 import com.pacific.adapter.RecyclerAdapter;
-import com.trello.rxlifecycle.FragmentEvent;
+import com.pacific.adapter.RecyclerAdapterHelper;
+import com.trello.rxlifecycle.android.FragmentEvent;
 import com.trello.rxlifecycle.components.support.RxFragment;
 
 import java.util.ArrayList;
