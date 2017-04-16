@@ -42,7 +42,8 @@ public class ExpandableListViewFragment extends RxFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        adapter = new ExpandableAdapter<MenuBean, ExploreBean>(getContext(), R.layout.item, R.layout.item_child) {
+        adapter = new ExpandableAdapter<MenuBean, ExploreBean>(getContext(),
+                R.layout.item, R.layout.item_child) {
             @Override
             protected List<ExploreBean> getChildren(int groupPosition) {
                 return get(groupPosition).getExploreBeanList();

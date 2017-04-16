@@ -67,7 +67,7 @@ abstract class BaseAdapter<T, H extends AdapterHelper> extends android.widget.Ba
             helper = getAdapterHelper(position, convertView, parent, layoutResIds[0]);
         }
         T item = getItem(position);
-        convert(helper, item);
+        convert(helper, item , position);
         return helper.getItemView();
     }
 
@@ -186,7 +186,7 @@ abstract class BaseAdapter<T, H extends AdapterHelper> extends android.widget.Ba
         }
     }
 
-    protected abstract void convert(H helper, T item);
+    protected abstract void convert(H helper, T item,int position);
 
     protected abstract H getAdapterHelper(int position, View convertView, ViewGroup parent, int layoutResId);
 }

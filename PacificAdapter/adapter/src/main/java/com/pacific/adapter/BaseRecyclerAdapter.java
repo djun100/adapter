@@ -59,7 +59,7 @@ abstract class BaseRecyclerAdapter<T, H extends RecyclerAdapterHelper> extends R
     public void onBindViewHolder(ViewHolder holder, int position) {
         H helper = getAdapterHelper(holder);
         T item = get(position);
-        convert(helper, item);
+        convert(helper, item , position);
     }
 
     @Override
@@ -186,7 +186,7 @@ abstract class BaseRecyclerAdapter<T, H extends RecyclerAdapterHelper> extends R
         }
     }
 
-    protected abstract void convert(H helper, T item);
+    protected abstract void convert(H helper, T item,int pos);
 
     protected abstract H getAdapterHelper(ViewHolder viewHolder);
 }

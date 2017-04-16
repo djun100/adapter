@@ -42,7 +42,7 @@ public class ListViewFragment extends RxFragment {
         super.onCreate(savedInstanceState);
         adapter = new Adapter<ExploreBean>(getContext(), R.layout.item, R.layout.item0, R.layout.item1) {
             @Override
-            protected void convert(final AdapterHelper helper, ExploreBean exploreBean) {
+            protected void convert(final AdapterHelper helper, ExploreBean exploreBean,int pos) {
                 final int position = helper.getPosition();
                 if (position % 3 == 0) {
                     helper.setImageResource(R.id.img_explore_icon, exploreBean.getIconResId())
