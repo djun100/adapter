@@ -52,7 +52,7 @@ compile 'com.github.thepacific:adapter:{lastest version}'
 #### Single layout
 * Just override convert()
 ```java
-adapter = new Adapter<ExploreBean>(context, R.layout.item) {
+adapter = new Adapter<ExploreBean>(R.layout.item) {
             @Override
             protected void convert(final AdapterHelper helper, ExploreBean exploreBean) {
                 final int position = helper.getPosition();
@@ -72,7 +72,7 @@ adapter = new Adapter<ExploreBean>(context, R.layout.item) {
 #### Multiple view types layout
 * Need to override convert(), getItemViewType(), and getLayoutResId()
 ```java
-adapter = new Adapter<ExploreBean>(context, R.layout.item, R.layout.item0, R.layout.item1) {
+adapter = new Adapter<ExploreBean>(R.layout.item, R.layout.item0, R.layout.item1) {
             @Override
             protected void convert(final AdapterHelper helper, ExploreBean exploreBean) {
                 // RecyclerViewHelper uses helper.getAdapterPosition()
