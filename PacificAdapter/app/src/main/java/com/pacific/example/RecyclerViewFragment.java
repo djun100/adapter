@@ -44,7 +44,7 @@ public class RecyclerViewFragment extends RxFragment {
 
         adapter = new RecyclerAdapter<ExploreBean>(getContext(), R.layout.item, R.layout.item0, R.layout.item1) {
             @Override
-            protected void convert(final RecyclerAdapterHelper helper, ExploreBean exploreBean) {
+            protected void convert(final RecyclerAdapterHelper helper, ExploreBean exploreBean,int pos) {
                 final int position = helper.getAdapterPosition();
                 if (position % 3 == 0) {
                     helper.setImageResource(R.id.img_explore_icon, exploreBean.getIconResId());
