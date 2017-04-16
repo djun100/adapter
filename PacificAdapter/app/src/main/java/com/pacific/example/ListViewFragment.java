@@ -41,7 +41,7 @@ public class ListViewFragment extends RxFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         adapter = new Adapter<ExploreBean>(getContext(),
-                R.layout.item, R.layout.item0, R.layout.item1) {
+                R.layout.item0, R.layout.item1, R.layout.item2) {
             @Override
             protected void convert(final AdapterHelper helper, ExploreBean exploreBean,int pos) {
                 final int position = helper.getPosition();
@@ -81,8 +81,8 @@ public class ListViewFragment extends RxFragment {
             }
 
             /**
-             * Must be overridden , when you have more than one item layout.
-             * No need to be overridden , when you only have one item layout.
+             * Must be overridden , when you have more than one item0 layout.
+             * No need to be overridden , when you only have one item0 layout.
              */
             @Override
             public int getItemViewType(int position) {
@@ -98,11 +98,11 @@ public class ListViewFragment extends RxFragment {
 //            @Override
 //            public int getLayoutResId(int viewType) {
 //                if (viewType == 0) {
-//                    return R.layout.item;
-//                } else if (viewType == 1) {
 //                    return R.layout.item0;
-//                } else {
+//                } else if (viewType == 1) {
 //                    return R.layout.item1;
+//                } else {
+//                    return R.layout.item2;
 //                }
 //            }
         };
@@ -398,7 +398,7 @@ public class ListViewFragment extends RxFragment {
     }
 
     public void clickSnack(int position) {
-        Snackbar.make(listView, "click item " + String.valueOf(position), Snackbar.LENGTH_SHORT)
+        Snackbar.make(listView, "click item0 " + String.valueOf(position), Snackbar.LENGTH_SHORT)
                 .setAction(R.string.close, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
