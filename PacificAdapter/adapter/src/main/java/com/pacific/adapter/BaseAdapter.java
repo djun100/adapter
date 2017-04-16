@@ -55,7 +55,7 @@ abstract class BaseAdapter<T, H extends AdapterHelper> extends android.widget.Ba
     }
 
     public int getLayoutResId(int viewType) {
-        throw new RuntimeException("Required method getLayoutResId was not overridden");
+        return layoutResIds[viewType];
     }
 
     @Override

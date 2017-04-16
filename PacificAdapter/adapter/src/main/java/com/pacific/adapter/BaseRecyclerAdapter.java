@@ -40,7 +40,7 @@ abstract class BaseRecyclerAdapter<T, H extends RecyclerAdapterHelper> extends R
     }
 
     public int getLayoutResId(int viewType) {
-        throw new RuntimeException("Required method getLayoutResId was not overridden");
+        return layoutResIds[viewType];
     }
 
     @Override

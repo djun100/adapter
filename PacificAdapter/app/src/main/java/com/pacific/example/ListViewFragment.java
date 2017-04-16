@@ -40,7 +40,8 @@ public class ListViewFragment extends RxFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        adapter = new Adapter<ExploreBean>(getContext(), R.layout.item, R.layout.item0, R.layout.item1) {
+        adapter = new Adapter<ExploreBean>(getContext(),
+                R.layout.item, R.layout.item0, R.layout.item1) {
             @Override
             protected void convert(final AdapterHelper helper, ExploreBean exploreBean,int pos) {
                 final int position = helper.getPosition();
@@ -94,21 +95,16 @@ public class ListViewFragment extends RxFragment {
                 }
             }
 
-            /**
-             * Get layoutResId from view type  @see #getItemViewType(int position) return value.
-             * Must be overridden , when you have more than one item layout.
-             * No need to be overridden , when you only have one item layout.
-             */
-            @Override
-            public int getLayoutResId(int viewType) {
-                if (viewType == 0) {
-                    return R.layout.item;
-                } else if (viewType == 1) {
-                    return R.layout.item0;
-                } else {
-                    return R.layout.item1;
-                }
-            }
+//            @Override
+//            public int getLayoutResId(int viewType) {
+//                if (viewType == 0) {
+//                    return R.layout.item;
+//                } else if (viewType == 1) {
+//                    return R.layout.item0;
+//                } else {
+//                    return R.layout.item1;
+//                }
+//            }
         };
     }
 
