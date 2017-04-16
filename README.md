@@ -1,4 +1,4 @@
-﻿##改进：
+﻿## 改进：
 * 多item不再需要复写getLayoutResId函数
 * 增加约定：
 * 布局文件名后缀对应viewtype 如：R.layout.item0, R.layout.item1, R.layout.item2
