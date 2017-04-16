@@ -1,29 +1,28 @@
 package com.pacific.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+
+import com.cy.app.UtilContext;
 
 import java.util.ArrayList;
 import java.util.List;
 
 abstract class BaseRecyclerAdapter<T, H extends RecyclerAdapterHelper> extends RecyclerView.Adapter<ViewHolder> implements DataIO<T> {
 
-    protected final Context context;
     protected final LayoutInflater layoutInflater;
     protected final int[] layoutResIds;
     protected final ArrayList<T> data;
 
-    public BaseRecyclerAdapter(Context context, int... layoutResIds) {
-        this(context, null, layoutResIds);
+    public BaseRecyclerAdapter( int... layoutResIds) {
+        this(null, layoutResIds);
     }
 
-    public BaseRecyclerAdapter(Context context, List<T> data, int... layoutResIds) {
-        this.context = context;
+    public BaseRecyclerAdapter( List<T> data, int... layoutResIds) {
         this.layoutResIds = layoutResIds;
-        this.layoutInflater = LayoutInflater.from(context);
+        this.layoutInflater = LayoutInflater.from(UtilContext.getContext());
         this.data = data == null ? new ArrayList<T>() : new ArrayList<>(data);
     }
 

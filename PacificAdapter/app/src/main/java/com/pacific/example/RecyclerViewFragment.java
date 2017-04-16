@@ -42,39 +42,37 @@ public class RecyclerViewFragment extends RxFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        adapter = new RecyclerAdapter<ExploreBean>(getContext(),
-                R.layout.item0, R.layout.item1, R.layout.item2) {
+        adapter = new RecyclerAdapter<ExploreBean>(R.layout.item0, R.layout.item1, R.layout.item2) {
             @Override
-            protected void convert(final RecyclerAdapterHelper helper, ExploreBean exploreBean,int pos) {
-                final int position = helper.getAdapterPosition();
-                if (position % 3 == 0) {
+            protected void convert(final RecyclerAdapterHelper helper, ExploreBean exploreBean, final int pos) {
+                if (getItemViewType(pos) == 0) {
                     helper.setImageResource(R.id.img_explore_icon, exploreBean.getIconResId());
-                    helper.setText(R.id.tv_explore_name, "__Index: " + String.valueOf(position))
+                    helper.setText(R.id.tv_explore_name, "__Index: " + String.valueOf(pos))
                             .setText(R.id.tv_explore_desc, exploreBean.getDescription())
                             .getItemView().setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            clickSnack(position);
+                            clickSnack(pos);
                         }
                     });
-                } else if (position % 3 == 1) {
+                } else if (getItemViewType(pos) == 1) {
                     helper.setImageResource(R.id.img_explore_icon, R.drawable.camera);
-                    helper.setText(R.id.tv_explore_name, "__Index: " + String.valueOf(position))
+                    helper.setText(R.id.tv_explore_name, "__Index: " + String.valueOf(pos))
                             .setText(R.id.tv_explore_desc, exploreBean.getDescription())
                             .getItemView().setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            clickSnack(position);
+                            clickSnack(pos);
                         }
                     });
                 } else {
                     helper.setImageResource(R.id.img_explore_icon, R.drawable.ic_launcher);
-                    helper.setText(R.id.tv_explore_name, "__Index: " + String.valueOf(position))
+                    helper.setText(R.id.tv_explore_name, "__Index: " + String.valueOf(pos))
                             .setText(R.id.tv_explore_desc, exploreBean.getDescription())
                             .getItemView().setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            clickSnack(position);
+                            clickSnack(pos);
                         }
                     });
                 }

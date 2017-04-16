@@ -1,6 +1,5 @@
 package com.pacific.adapter;
 
-import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -9,20 +8,18 @@ import java.util.List;
 
 abstract class BaseAdapter<T, H extends AdapterHelper> extends android.widget.BaseAdapter implements DataIO<T> {
 
-    protected final Context context;
     protected final int layoutResIds[];
     protected final ArrayList<T> data;
 
-    public BaseAdapter(Context context, int... layoutResIds) {
-        this(context, null, layoutResIds);
+    public BaseAdapter( int... layoutResIds) {
+        this(null, layoutResIds);
     }
 
-    public BaseAdapter(Context context, List<T> data, int... layoutResIds) {
+    public BaseAdapter( List<T> data, int... layoutResIds) {
         if (layoutResIds.length == 0) {
             throw new RuntimeException("Has no layout to attach");
         }
         this.data = data == null ? new ArrayList<T>() : new ArrayList<>(data);
-        this.context = context;
         this.layoutResIds = layoutResIds;
     }
 
