@@ -26,14 +26,6 @@ abstract class BaseRecyclerAdapter<T, H extends RecyclerAdapterHelper> extends R
         this.data = data == null ? new ArrayList<T>() : new ArrayList<>(data);
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        if (getViewTypeCount() == 1) {
-            return super.getItemViewType(position);
-        }
-        throw new RuntimeException("Required method getItemViewType was not overridden");
-    }
-
     public int getViewTypeCount() {
         return layoutResIds.length;
     }

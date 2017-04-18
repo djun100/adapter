@@ -39,14 +39,6 @@ abstract class BaseAdapter<T, H extends AdapterHelper> extends android.widget.Ba
     }
 
     @Override
-    public int getItemViewType(int position) {
-        if (getViewTypeCount() == 1) {
-            return super.getItemViewType(position);
-        }
-        throw new RuntimeException("Required method getItemViewType was not overridden");
-    }
-
-    @Override
     public int getViewTypeCount() {
         return layoutResIds.length;
     }

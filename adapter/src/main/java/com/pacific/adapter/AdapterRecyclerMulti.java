@@ -6,13 +6,13 @@ import android.support.v7.widget.RecyclerView.ViewHolder;
 
 import java.util.List;
 
-public abstract class RecyclerAdapter<T> extends BaseRecyclerAdapter<T, RecyclerAdapterHelper> {
+public abstract class AdapterRecyclerMulti<T> extends BaseRecyclerAdapter<T, RecyclerAdapterHelper> {
 
-    public RecyclerAdapter(@NonNull int... layoutResIds) {
+    public AdapterRecyclerMulti(@NonNull int... layoutResIds) {
         super(layoutResIds);
     }
 
-    public RecyclerAdapter(@Nullable List<T> data, @NonNull int... layoutResIds) {
+    public AdapterRecyclerMulti(@Nullable List<T> data, @NonNull int... layoutResIds) {
         super( data, layoutResIds);
     }
 
@@ -20,4 +20,11 @@ public abstract class RecyclerAdapter<T> extends BaseRecyclerAdapter<T, Recycler
     protected RecyclerAdapterHelper getAdapterHelper(ViewHolder viewHolder) {
         return RecyclerAdapterHelper.get(viewHolder);
     }
+
+    @Override
+    public int getItemViewType(int position) {
+        return itemViewType(position);
+    }
+
+    protected abstract int itemViewType(int position);
 }
