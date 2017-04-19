@@ -51,8 +51,8 @@ public class ExpandableListViewFragment extends RxFragment {
 
             @Override
             protected void convertGroupView(final boolean isExpanded, final ExpandableAdapterHelper helper, MenuBean item) {
-                helper.setImageResource(R.id.img_explore_icon, item.getIconResId())
-                        .setText(R.id.tv_explore_name, item.getDescription())
+                helper.setImageResource(R.id.img_explore_icon0, item.getIconResId())
+                        .setText(R.id.tv_explore_name0, item.getDescription())
                         .getItemView().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

@@ -81,9 +81,9 @@ public class RecyclerViewFragment extends RxFragment {
             @Override
             protected void convert(final RecyclerAdapterHelper helper, ExploreBean exploreBean, final int pos) {
                 if (getItemViewType(pos) == 0) {
-                    helper.setImageResource(R.id.img_explore_icon, exploreBean.getIconResId());
-                    helper.setText(R.id.tv_explore_name, "__Index: " + String.valueOf(pos))
-                            .setText(R.id.tv_explore_desc, exploreBean.getDescription())
+                    helper.setImageResource(R.id.img_explore_icon0, exploreBean.getIconResId());
+                    helper.setText(R.id.tv_explore_name0, "__Index: " + String.valueOf(pos))
+                            .setText(R.id.tv_explore_desc0, exploreBean.getDescription())
                             .getItemView().setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -91,9 +91,9 @@ public class RecyclerViewFragment extends RxFragment {
                         }
                     });
                 } else if (getItemViewType(pos) == 1) {
-                    helper.setImageResource(R.id.img_explore_icon, R.drawable.camera);
-                    helper.setText(R.id.tv_explore_name, "__Index: " + String.valueOf(pos))
-                            .setText(R.id.tv_explore_desc, exploreBean.getDescription())
+                    helper.setImageResource(R.id.img_explore_icon1, R.drawable.camera);
+                    helper.setText(R.id.tv_explore_name1, "__Index: " + String.valueOf(pos))
+                            .setText(R.id.tv_explore_desc1, exploreBean.getDescription())
                             .getItemView().setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -101,9 +101,9 @@ public class RecyclerViewFragment extends RxFragment {
                         }
                     });
                 } else {
-                    helper.setImageResource(R.id.img_explore_icon, R.drawable.ic_launcher);
-                    helper.setText(R.id.tv_explore_name, "__Index: " + String.valueOf(pos))
-                            .setText(R.id.tv_explore_desc, exploreBean.getDescription())
+                    helper.setImageResource(R.id.img_explore_icon2, R.drawable.ic_launcher);
+                    helper.setText(R.id.tv_explore_name2, "__Index: " + String.valueOf(pos))
+                            .setText(R.id.tv_explore_desc2, exploreBean.getDescription())
                             .getItemView().setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
