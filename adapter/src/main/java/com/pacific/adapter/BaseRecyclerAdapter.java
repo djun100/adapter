@@ -1,5 +1,6 @@
 package com.pacific.adapter;
 
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
@@ -10,20 +11,42 @@ import com.cy.app.UtilContext;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.cy.app.UtilContext.getContext;
+
 abstract class BaseRecyclerAdapter<T, H extends RecyclerAdapterHelper> extends RecyclerView.Adapter<ViewHolder> implements DataIO<T> {
 
     protected final LayoutInflater layoutInflater;
     protected final int[] layoutResIds;
     protected final ArrayList<T> data;
+    protected final RecyclerView mRecyclerView;
 
     public BaseRecyclerAdapter( int... layoutResIds) {
         this(null, layoutResIds);
     }
 
     public BaseRecyclerAdapter( List<T> data, int... layoutResIds) {
+        this(null,data,layoutResIds);
+    }
+
+    public BaseRecyclerAdapter(RecyclerView recyclerView, List<T> data, int... layoutResIds) {
+        mRecyclerView=recyclerView;
         this.layoutResIds = layoutResIds;
-        this.layoutInflater = LayoutInflater.from(UtilContext.getContext());
+        this.layoutInflater = LayoutInflater.from(getContext());
         this.data = data == null ? new ArrayList<T>() : new ArrayList<>(data);
+        initRecyclerView();
+    }
+
+    private void initRecyclerView() {
+        if (mRecyclerView!=null) {
+            if (mRecyclerView.getAdapter()==null) {
+                mRecyclerView.setAdapter(this);
+            }
+            if (mRecyclerView.getLayoutManager()==null){
+                mRecyclerView.setLayoutManager(
+                        new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+            }
+
+        }
     }
 
     public int getViewTypeCount() {

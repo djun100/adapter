@@ -8,6 +8,8 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.pacific.adapter.util.FlexibleDecoration;
+
 public class VerticalItemDecoration extends FlexibleDecoration {
 
     private MarginProvider mMarginProvider;
