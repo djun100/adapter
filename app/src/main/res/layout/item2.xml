@@ -7,7 +7,8 @@
 
     <ImageView
         android:id="@+id/img_explore_icon2"
-        style="@style/wrap_wrap"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop" />
 

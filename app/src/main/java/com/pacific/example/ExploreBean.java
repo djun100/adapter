@@ -5,11 +5,14 @@ public class ExploreBean {
     private int iconResId;
     private String name;
     private String description;
+    private String type;
 
-    public ExploreBean(int iconResId, String name, String description) {
+    public ExploreBean(String type,int iconResId, String name, String description) {
+        this.type=type;
         this.iconResId = iconResId;
         this.name = name;
         this.description = description;
+
     }
 
     public String getName() {
@@ -22,5 +25,9 @@ public class ExploreBean {
 
     public int getIconResId() {
         return iconResId;
+    }
+
+    public String getType() {
+        return type;
     }
 }

@@ -61,7 +61,7 @@ abstract class BaseRecyclerAdapter<T, H extends RecyclerAdapterHelper> extends R
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         int layoutResId;
         if (getViewTypeCount() > 1) {
-            layoutResId = getLayoutResId(getItemViewType(viewType));
+            layoutResId = getLayoutResId(viewType);
         } else {
             layoutResId = layoutResIds[0];
         }

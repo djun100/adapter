@@ -26,7 +26,7 @@ public class ListViewFragment extends RxFragment {
 
     private ListView listView;
     private Adapter<ExploreBean> adapter;
-
+    List<ExploreBean> mBeen;
     public ListViewFragment() {
     }
 
@@ -34,13 +34,14 @@ public class ListViewFragment extends RxFragment {
         ListViewFragment fragment = new ListViewFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
+        fragment.mBeen=fragment.load();
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        adapter = new Adapter<ExploreBean>(R.layout.item0, R.layout.item1, R.layout.item2) {
+        adapter = new Adapter<ExploreBean>(mBeen,R.layout.item0, R.layout.item1, R.layout.item2) {
             @Override
             protected void convert(final AdapterHelper helper, ExploreBean exploreBean, final int pos) {
                 if (getItemViewType(pos) == 0) {
@@ -84,25 +85,13 @@ public class ListViewFragment extends RxFragment {
              */
             @Override
             public int getItemViewType(int position) {
-                if (position % 3 == 0) {
+                if (mBeen.get(position).getType().equals("a")){
                     return 0;
-                } else if (position % 3 == 1) {
+                }else if (mBeen.get(position).getType().equals("b")){
                     return 1;
-                } else {
-                    return 2;
-                }
+                }else return 2;
             }
 
-//            @Override
-//            public int getLayoutResId(int viewType) {
-//                if (viewType == 0) {
-//                    return R.layout.item0;
-//                } else if (viewType == 1) {
-//                    return R.layout.item1;
-//                } else {
-//                    return R.layout.item2;
-//                }
-//            }
         };
     }
 
@@ -116,281 +105,21 @@ public class ListViewFragment extends RxFragment {
         super.onViewCreated(view, savedInstanceState);
         listView = (ListView) view.findViewById(R.id.lv_list);
         listView.setAdapter(adapter);
-        Observable
-                .just(null)
-                .compose(this.bindUntilEvent(FragmentEvent.DESTROY))
-                .subscribeOn(Schedulers.newThread())
-                .map(new Func1<Object, List<ExploreBean>>() {
-                    @Override
-                    public List<ExploreBean> call(Object o) {
-                        return load();
-                    }
-                })
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<ExploreBean>>() {
-                    @Override
-                    public void call(List<ExploreBean> list0) {
-                        adapter.addAll(list0);
-                    }
-                });
     }
 
     public List<ExploreBean> load() {
         List<ExploreBean> list = new ArrayList<>();
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean(R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
+        list.add(new ExploreBean("a",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
+        list.add(new ExploreBean("a",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
+        list.add(new ExploreBean("a",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
+        list.add(new ExploreBean("a",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
+        list.add(new ExploreBean("b",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
+        list.add(new ExploreBean("b",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
+        list.add(new ExploreBean("b",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
+        list.add(new ExploreBean("c",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
+        list.add(new ExploreBean("c",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
+        list.add(new ExploreBean("c",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
+        list.add(new ExploreBean("c",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
 
         return list;
     }

@@ -141,14 +141,14 @@ public class ExpandableListViewFragment extends RxFragment {
 
         for (MenuBean menuBean : list0) {
             List<ExploreBean> list = new ArrayList<>();
-            list.add(new ExploreBean(R.drawable.web, "web work", "start：2016.01.01，end: 2016.02.01"));
-            list.add(new ExploreBean(R.drawable.web, "web work", "start：2016.01.01，end: 2016.02.01"));
-            list.add(new ExploreBean(R.drawable.web, "web work", "start：2016.01.01，end: 2016.02.01"));
-            list.add(new ExploreBean(R.drawable.web, "web work", "start：2016.01.01，end: 2016.02.01"));
-            list.add(new ExploreBean(R.drawable.web, "web work", "start：2016.01.01，end: 2016.02.01"));
-            list.add(new ExploreBean(R.drawable.web, "web work", "start：2016.01.01，end: 2016.02.01"));
-            list.add(new ExploreBean(R.drawable.web, "web work", "start：2016.01.01，end: 2016.02.01"));
-            list.add(new ExploreBean(R.drawable.web, "web work", "start：2016.01.01，end: 2016.02.01"));
+            list.add(new ExploreBean("a",R.drawable.web, "web work", "start：2016.01.01，end: 2016.02.01"));
+            list.add(new ExploreBean("a",R.drawable.web, "web work", "start：2016.01.01，end: 2016.02.01"));
+            list.add(new ExploreBean("a",R.drawable.web, "web work", "start：2016.01.01，end: 2016.02.01"));
+            list.add(new ExploreBean("b",R.drawable.web, "web work", "start：2016.01.01，end: 2016.02.01"));
+            list.add(new ExploreBean("b",R.drawable.web, "web work", "start：2016.01.01，end: 2016.02.01"));
+            list.add(new ExploreBean("c",R.drawable.web, "web work", "start：2016.01.01，end: 2016.02.01"));
+            list.add(new ExploreBean("c",R.drawable.web, "web work", "start：2016.01.01，end: 2016.02.01"));
+            list.add(new ExploreBean("c",R.drawable.web, "web work", "start：2016.01.01，end: 2016.02.01"));
             menuBean.setExploreBeanList(list);
         }
         return list0;
