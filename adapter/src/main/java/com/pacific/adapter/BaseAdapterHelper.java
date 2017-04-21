@@ -28,6 +28,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import static android.R.attr.visibility;
+import static android.R.attr.visible;
 
 public abstract class BaseAdapterHelper<T> {
     protected SparseArray<View> views;
@@ -109,6 +110,18 @@ public abstract class BaseAdapterHelper<T> {
             alpha.setFillAfter(true);
             retrieveView(viewId).startAnimation(alpha);
         }
+        return (T) this;
+    }
+
+    public T setGone(int viewId, boolean gone) {
+        View view = retrieveView(viewId);
+        view.setVisibility(gone?View.GONE:View.VISIBLE);
+        return (T) this;
+    }
+
+    public T setInVisible(int viewId, boolean invisible) {
+        View view = retrieveView(viewId);
+        view.setVisibility(invisible?View.INVISIBLE:View.VISIBLE);
         return (T) this;
     }
 
