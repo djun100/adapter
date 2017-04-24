@@ -3,6 +3,7 @@
 * 增加约定：
 * 布局文件名后缀对应viewtype 如：R.layout.item0, R.layout.item1, R.layout.item2
 * 去掉new Adapter()不需要传递的参数——上下文context
+* 当设置itemview点击事件无效，请确定不是在如WrapRecylerView自定义类内部已设置过clickListener。
 ## Adapter
 A quick adapter library for ListView, GridView, RecyclerView, ViewPager, and ExpandableListView on Android. Multiple view types is supported for ListView, GrideView, and RecyclerView.
 
