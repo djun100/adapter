@@ -32,7 +32,7 @@ abstract class BaseRecyclerAdapter<T, H extends RecyclerAdapterHelper> extends R
         mRecyclerView=recyclerView;
         this.layoutResIds = layoutResIds;
         this.layoutInflater = LayoutInflater.from(UtilContext.getContext());
-        this.data = data == null ? new ArrayList<T>() : new ArrayList<>(data);
+        this.data = data == null ? new ArrayList<T>() : (ArrayList<T>) data;
         initRecyclerView();
     }
 

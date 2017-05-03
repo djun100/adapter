@@ -9,4 +9,9 @@
         android:divider="@android:color/black"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></ListView>
+    <Button
+        android:text="add one"
+        android:id="@+id/mbtnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </FrameLayout>
