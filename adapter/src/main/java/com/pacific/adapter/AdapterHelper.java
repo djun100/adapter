@@ -5,7 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.cy.app.UtilContext;
+import com.pacific.adapter.util.UtilContext;
+
 
 final public class AdapterHelper extends BaseAdapterHelper<AdapterHelper> {
 

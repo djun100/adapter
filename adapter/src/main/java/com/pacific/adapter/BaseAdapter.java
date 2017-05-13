@@ -19,7 +19,7 @@ abstract class BaseAdapter<T, H extends AdapterHelper> extends android.widget.Ba
         if (layoutResIds.length == 0) {
             throw new RuntimeException("Has no layout to attach");
         }
-        this.data = data == null ? new ArrayList<T>() : new ArrayList<>(data);
+        this.data = data == null ? new ArrayList<T>() : (ArrayList<T>) data;
         this.layoutResIds = layoutResIds;
     }
 

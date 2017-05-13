@@ -6,12 +6,12 @@ import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.cy.app.UtilContext;
+
+import com.pacific.adapter.util.UtilContext;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.cy.app.UtilContext.getContext;
 
 abstract class BaseRecyclerAdapter<T, H extends RecyclerAdapterHelper> extends RecyclerView.Adapter<ViewHolder> implements DataIO<T> {
 
@@ -31,8 +31,8 @@ abstract class BaseRecyclerAdapter<T, H extends RecyclerAdapterHelper> extends R
     public BaseRecyclerAdapter(RecyclerView recyclerView, List<T> data, int... layoutResIds) {
         mRecyclerView=recyclerView;
         this.layoutResIds = layoutResIds;
-        this.layoutInflater = LayoutInflater.from(getContext());
-        this.data = data == null ? new ArrayList<T>() : new ArrayList<>(data);
+        this.layoutInflater = LayoutInflater.from(UtilContext.getContext());
+        this.data = data == null ? new ArrayList<T>() : (ArrayList<T>) data;
         initRecyclerView();
     }
 
@@ -43,7 +43,7 @@ abstract class BaseRecyclerAdapter<T, H extends RecyclerAdapterHelper> extends R
             }
             if (mRecyclerView.getLayoutManager()==null){
                 mRecyclerView.setLayoutManager(
-                        new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+                        new LinearLayoutManager(UtilContext.getContext(), LinearLayoutManager.VERTICAL, false));
             }
 
         }

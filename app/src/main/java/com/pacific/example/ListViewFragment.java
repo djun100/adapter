@@ -98,6 +98,13 @@ public class ListViewFragment extends RxFragment {
         super.onViewCreated(view, savedInstanceState);
         listView = (ListView) view.findViewById(R.id.lv_list);
         listView.setAdapter(adapter);
+        view.findViewById(R.id.mbtnAdd).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mBeen.add(new ExploreBean("a",R.drawable.head, "web work", "start：2016"));
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 
     public List<ExploreBean> load() {
@@ -109,11 +116,9 @@ public class ListViewFragment extends RxFragment {
 
         list.add(new ExploreBean("a",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
         list.add(new ExploreBean("a",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean("a",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean("a",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
         list.add(new ExploreBean("b",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
         list.add(new ExploreBean("b",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean("b",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
+        list.add(new ExploreBean("c",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
 
         return list;
     }
