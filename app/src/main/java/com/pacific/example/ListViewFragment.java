@@ -10,17 +10,10 @@ import android.widget.ListView;
 
 import com.pacific.adapter.Adapter;
 import com.pacific.adapter.AdapterHelper;
-import com.trello.rxlifecycle.android.FragmentEvent;
 import com.trello.rxlifecycle.components.support.RxFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 public class ListViewFragment extends RxFragment {
 
@@ -109,6 +102,11 @@ public class ListViewFragment extends RxFragment {
 
     public List<ExploreBean> load() {
         List<ExploreBean> list = new ArrayList<>();
+        list.add(new ExploreBean("c",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
+        list.add(new ExploreBean("c",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
+        list.add(new ExploreBean("c",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
+        list.add(new ExploreBean("c",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
+
         list.add(new ExploreBean("a",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
         list.add(new ExploreBean("a",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
         list.add(new ExploreBean("a",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
@@ -116,10 +114,6 @@ public class ListViewFragment extends RxFragment {
         list.add(new ExploreBean("b",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
         list.add(new ExploreBean("b",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
         list.add(new ExploreBean("b",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean("c",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean("c",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean("c",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
-        list.add(new ExploreBean("c",R.drawable.head, "web work", "start：2016.01.01，end: 2016.02.01"));
 
         return list;
     }

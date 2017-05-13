@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.pacific.adapter.AdapterRecyclerMulti;
+import com.pacific.adapter.AdapterRecycler;
 import com.pacific.adapter.RecyclerAdapterHelper;
 import com.pacific.adapter.util.URecyclerView;
 import com.trello.rxlifecycle.components.support.RxFragment;
@@ -18,7 +18,7 @@ import java.util.List;
 
 public class RecyclerViewFragment extends RxFragment {
     private RecyclerView recyclerView;
-    private AdapterRecyclerMulti<ExploreBean> adapter;
+    private AdapterRecycler<ExploreBean> adapter;
     List<ExploreBean> mBeen;
     public RecyclerViewFragment() {
     }
@@ -48,11 +48,12 @@ public class RecyclerViewFragment extends RxFragment {
 
         new URecyclerView(recyclerView).addHorizontalItemDecoration();
 
-        adapter = new AdapterRecyclerMulti<ExploreBean>(recyclerView,mBeen,
-                R.layout.item0, R.layout.item1, R.layout.item2) {
+        adapter = new AdapterRecycler<ExploreBean>(recyclerView,mBeen,
+                R.layout.item0/*, R.layout.item1, R.layout.item2*/) {
             @Override
             protected void convert(final RecyclerAdapterHelper helper, ExploreBean exploreBean, final int pos) {
-                if (getItemViewType(pos) == 0) {
+//                if (getItemViewType(pos) == 0) {
+                if (true) {
                     helper.setImageResource(R.id.img_explore_icon0, exploreBean.getIconResId());
                     helper.setText(R.id.tv_explore_name0, "__Index: " + String.valueOf(pos))
                             .setText(R.id.tv_explore_desc0, exploreBean.getDescription())
@@ -86,14 +87,14 @@ public class RecyclerViewFragment extends RxFragment {
                 helper.getItemView().setTag("hello world");
             }
 
-            @Override
-            protected int itemViewType(int position) {
-                if (mBeen.get(position).getType().equals("a")){
-                    return 0;
-                }else if (mBeen.get(position).getType().equals("b")){
-                    return 1;
-                }else return 2;
-            }
+//            @Override
+//            protected int itemViewType(int position) {
+//                if (mBeen.get(position).getType().equals("a")){
+//                    return 0;
+//                }else if (mBeen.get(position).getType().equals("b")){
+//                    return 1;
+//                }else return 2;
+//            }
         };
     }
 
