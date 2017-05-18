@@ -2,7 +2,6 @@
     package="com.pacific.adapter">
 
     <application
-        android:allowBackup="true"
         android:supportsRtl="true">
 
     </application>
