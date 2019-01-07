@@ -7,13 +7,13 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-public abstract class Adapter<T> extends BaseAdapter<T, AdapterHelper> {
+public abstract class BaseMultiAdapter<T> extends AbsAdapter<T, AdapterHelper> {
 
-    public Adapter(@NonNull int... layoutResIds) {
+    public BaseMultiAdapter(@NonNull int... layoutResIds) {
         super(layoutResIds);
     }
 
-    public Adapter( @Nullable List<T> data, @NonNull int... layoutResIds) {
+    public BaseMultiAdapter(@Nullable List<T> data, @NonNull int... layoutResIds) {
         super(data, layoutResIds);
     }
 
@@ -24,9 +24,8 @@ public abstract class Adapter<T> extends BaseAdapter<T, AdapterHelper> {
 
     @Override
     public int getItemViewType(int position) {
-        if (getViewTypeCount() == 1) {
-            return super.getItemViewType(position);
-        }
-        throw new RuntimeException("Required method getItemViewType was not overridden");
+        return itemViewType(position);
     }
+
+    protected abstract int itemViewType(int position);
 }

@@ -11,7 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.pacific.adapter.FragmentPagerAdapter2;
+import com.pacific.adapter.BaseFragmentPagerAdapter;
+import com.pacific.example.recyclerview.RecyclerViewFragment;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
@@ -83,12 +84,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public static class PagerAdapter extends FragmentPagerAdapter2 {
-        private int count;
+    public static class PagerAdapter extends BaseFragmentPagerAdapter {
 
-        public PagerAdapter(FragmentManager fm, int count) {
-            super(fm);
-            this.count = count;
+
+        public PagerAdapter(FragmentManager fm, int pageCount) {
+            super(fm, pageCount);
         }
 
         @Override
@@ -103,11 +103,6 @@ public class MainActivity extends AppCompatActivity {
                 default:
                     return OtherFragment.newInstance();
             }
-        }
-
-        @Override
-        public int getCount() {
-            return count;
         }
     }
 }

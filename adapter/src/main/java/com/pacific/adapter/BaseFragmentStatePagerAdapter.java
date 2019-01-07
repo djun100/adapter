@@ -2,14 +2,14 @@ package com.pacific.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.ViewGroup;
 
-public abstract class FragmentPagerAdapter2 extends FragmentPagerAdapter {
+public abstract class BaseFragmentStatePagerAdapter extends FragmentStatePagerAdapter {
     protected int currentPosition = -1;
     protected Fragment currentFragment;
 
-    public FragmentPagerAdapter2(FragmentManager fm) {
+    public BaseFragmentStatePagerAdapter(FragmentManager fm) {
         super(fm);
     }
 

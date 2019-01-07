@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.pacific.adapter.Adapter;
+import com.pacific.adapter.BaseAdapter;
 import com.pacific.adapter.AdapterHelper;
 import com.trello.rxlifecycle.components.support.RxFragment;
 
@@ -18,7 +18,7 @@ import java.util.List;
 public class ListViewFragment extends RxFragment {
 
     private ListView listView;
-    private Adapter<ExploreBean> adapter;
+    private BaseAdapter<ExploreBean> adapter;
     List<ExploreBean> mBeen;
     public ListViewFragment() {
     }
@@ -34,7 +34,7 @@ public class ListViewFragment extends RxFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        adapter = new Adapter<ExploreBean>(mBeen,R.layout.item0, R.layout.item1, R.layout.item2) {
+        adapter = new BaseAdapter<ExploreBean>(mBeen,R.layout.item0, R.layout.item1, R.layout.item2) {
             @Override
             protected void convert(final AdapterHelper helper, ExploreBean exploreBean, final int pos) {
                 if (getItemViewType(pos) == 0) {

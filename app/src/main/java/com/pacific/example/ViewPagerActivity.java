@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.pacific.adapter.PagerAdapterHelper;
-import com.pacific.adapter.ViewPagerAdapter;
+import com.pacific.adapter.BaseViewPagerAdapter;
 import com.trello.rxlifecycle.android.ActivityEvent;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
@@ -26,13 +26,13 @@ import rx.schedulers.Schedulers;
 
 public class ViewPagerActivity extends RxAppCompatActivity {
 
-    private ViewPagerAdapter<String> adapter;
+    private BaseViewPagerAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_pager);
-        adapter = new ViewPagerAdapter<String>(this) {
+        adapter = new BaseViewPagerAdapter<String>(this) {
             @Override
             protected void convert(PagerAdapterHelper helper, String item) {
                 helper.setImageUrl(R.id.img_view, "file:///"+item);
@@ -65,7 +65,11 @@ public class ViewPagerActivity extends RxAppCompatActivity {
                         String path = Environment.getExternalStorageDirectory().getAbsolutePath();
 
                         File file =new File(path+File.separator+"Pacific"+File.separator);
-                        for (File f : file.listFiles()) {
+                        File[] files=file.listFiles();
+                        if (files==null ||files.length==0){
+                            return strings;
+                        }
+                        for (File f : files) {
                             if(f.getName().endsWith(".jpg") || (f.getName().endsWith(".png"))){
                                 strings.add(f.getAbsolutePath());
                             }
