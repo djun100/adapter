@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -15,37 +17,28 @@ import android.view.View;
  * 当不设置size时，分割线以图片的厚度为标准或不显示分割线（size默认为0）。
  */
 public class HorizontalItemDecoration extends RecyclerView.ItemDecoration {
-    private int mDividerSize = 1;
-    private int mDividerColor = Color.BLACK;
-    private Drawable mDividerDrawable;
     private Paint mPaint;
-    private int marginLeft;
-    private int marginRight;
-
-    private HorizontalItemDecoration() {
-        this(1,Color.BLACK,null);
+    private Builder mBuilder;
+    private HorizontalItemDecoration(Builder builder) {
+        this(builder.mDividerSize,builder.mDividerColor,builder.mDividerDrawable);
+        mBuilder=builder;
     }
 
     private HorizontalItemDecoration(int dividerSize, int dividerColor, Drawable dividerDrawable) {
-        mDividerSize = dividerSize;
-        mDividerColor = dividerColor;
-        mDividerDrawable = dividerDrawable;
 
         //绘制纯色分割线
         if (dividerDrawable == null) {
             //初始化画笔(抗锯齿)并设置画笔颜色和画笔样式为填充
             mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            mPaint.setColor(mDividerColor);
+            mPaint.setColor(dividerColor);
             mPaint.setStyle(Paint.Style.FILL);
             //绘制图片分割线
         } else {
             //如果没有指定分割线的size，则默认是图片的厚度
-            if (mDividerSize == 0) {
-                mDividerSize = dividerDrawable.getIntrinsicHeight();
-
+            if (dividerSize == 0) {
+                mBuilder.mDividerSize = dividerDrawable.getIntrinsicHeight();
             }
         }
-
     }
 
 
@@ -63,7 +56,7 @@ public class HorizontalItemDecoration extends RecyclerView.ItemDecoration {
      */
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-        outRect.set(0, 0, 0, mDividerSize);
+        outRect.set(0, 0, 0, mBuilder.mDividerSize);
 
     }
 
@@ -73,21 +66,21 @@ public class HorizontalItemDecoration extends RecyclerView.ItemDecoration {
     private void drawHorientationDivider(Canvas c, RecyclerView parent, RecyclerView.State state) {
         //得到分割线的四个点：左、上、右、下
         //画横线时左右可以根据parent得到
-        int left = parent.getPaddingLeft()+marginLeft;
-        int right = parent.getMeasuredWidth() - parent.getPaddingRight()-marginRight;
+        int left = parent.getPaddingLeft()+mBuilder.marginLeft;
+        int right = parent.getMeasuredWidth() - parent.getPaddingRight()-mBuilder.marginRight;
 
         //上下需要根据每个孩子控件计算
         for (int i = 0; i < parent.getChildCount(); i++) {
             View child = parent.getChildAt(i);
             RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
             int top = child.getBottom() + params.bottomMargin;
-            int bottom = top + mDividerSize;
+            int bottom = top + mBuilder.mDividerSize;
             //得到四个点后开始画
-            if (mDividerDrawable == null) {
+            if (mBuilder.mDividerDrawable == null) {
                 c.drawRect(left, top, right, bottom, mPaint);
             } else {
-                mDividerDrawable.setBounds(left, top, right, bottom);
-                mDividerDrawable.draw(c);
+                mBuilder.mDividerDrawable.setBounds(left, top, right, bottom);
+                mBuilder.mDividerDrawable.draw(c);
             }
         }
     }
@@ -105,57 +98,69 @@ public class HorizontalItemDecoration extends RecyclerView.ItemDecoration {
             View child = parent.getChildAt(i);
             RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
             int left = child.getRight() + params.rightMargin;
-            int right = left + mDividerSize;
+            int right = left + mBuilder.mDividerSize;
             //得到四个点后开始画
-            if (mDividerDrawable == null) {
+            if (mBuilder.mDividerDrawable == null) {
                 c.drawRect(left, top, right, bottom, mPaint);
             } else {
-                mDividerDrawable.setBounds(left, top, right, bottom);
-                mDividerDrawable.draw(c);
+                mBuilder.mDividerDrawable.setBounds(left, top, right, bottom);
+                mBuilder.mDividerDrawable.draw(c);
             }
         }
     }
 
 
+    public static class Builder{
+        private int mDividerSize = 1;
+        private int mDividerColor = Color.BLACK;
+        private Drawable mDividerDrawable;
+        private int marginLeft;
+        private int marginRight;
 
 
+        public static Builder create(){
+            Builder builder=new Builder();
+            return builder;
+        }
+        public HorizontalItemDecoration build(){
+            HorizontalItemDecoration horizontalItemDecoration= new HorizontalItemDecoration(this);
+            return horizontalItemDecoration;
+        }
 
+        public Builder setDividerSize(int dividerSize) {
+            mDividerSize = dividerSize;
+            return this;
+        }
 
-    public static HorizontalItemDecoration creat(){
-        HorizontalItemDecoration horizontalItemDecoration=new HorizontalItemDecoration();
-        return horizontalItemDecoration;
-    }
+        public Builder setDividerColor(@ColorInt int dividerColor) {
+            mDividerColor = dividerColor;
+            return this;
+        }
 
+        public Builder setDividerColorRes(@ColorRes int dividerColor) {
+            mDividerColor = UtilContext.getContext().getResources().getColor(dividerColor);
+            return this;
+        }
 
+        public Builder setDividerDrawable(Drawable dividerDrawable) {
+            mDividerDrawable = dividerDrawable;
+            return this;
+        }
 
-    public HorizontalItemDecoration setDividerSize(int dividerSize) {
-        mDividerSize = dividerSize;
-        return this;
-    }
+        public Builder setMarginHorizontal(int marginHorizontal) {
+            this.marginLeft=marginHorizontal;
+            this.marginRight=marginHorizontal;
+            return this;
+        }
 
-    public HorizontalItemDecoration setDividerColor(int dividerColor) {
-        mDividerColor = dividerColor;
-        return this;
-    }
+        public Builder setMarginLeft(int marginLeft) {
+            this.marginLeft = marginLeft;
+            return this;
+        }
 
-    public HorizontalItemDecoration setDividerDrawable(Drawable dividerDrawable) {
-        mDividerDrawable = dividerDrawable;
-        return this;
-    }
-
-    public HorizontalItemDecoration setMarginHorizontal(int marginHorizontal) {
-        this.marginLeft=marginHorizontal;
-        this.marginRight=marginHorizontal;
-        return this;
-    }
-
-    public HorizontalItemDecoration setMarginLeft(int marginLeft) {
-        this.marginLeft = marginLeft;
-        return this;
-    }
-
-    public HorizontalItemDecoration setMarginRight(int marginRight) {
-        this.marginRight = marginRight;
-        return this;
+        public Builder setMarginRight(int marginRight) {
+            this.marginRight = marginRight;
+            return this;
+        }
     }
 }
