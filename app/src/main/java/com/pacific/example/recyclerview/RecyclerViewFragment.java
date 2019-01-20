@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.pacific.adapter.BaseRecyclerAdapter;
-import com.pacific.adapter.util.UtilRecyclerView;
+import com.pacific.adapter.util.HorizontalItemDecoration;
 import com.pacific.example.ExploreBean;
 import com.pacific.example.R;
 import com.trello.rxlifecycle.components.support.RxFragment;
@@ -46,7 +46,7 @@ public class RecyclerViewFragment extends RxFragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.rv_explore);
 
-        UtilRecyclerView.recyclerView(recyclerView).addHorizontalItemDecoration();
+        recyclerView.addItemDecoration(HorizontalItemDecoration.creat().setMarginHorizontal(30));
 
         adapter = new MyRecyclerAdapter(recyclerView,mBeen);
     }
