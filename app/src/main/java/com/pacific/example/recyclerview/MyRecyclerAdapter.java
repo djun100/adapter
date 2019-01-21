@@ -20,7 +20,7 @@ public class MyRecyclerAdapter extends BaseRecyclerAdapter<ExploreBean> {
 
     @Override
     protected void convert(final RecyclerAdapterHelper helper, ExploreBean exploreBean,
-                           final int pos, int viewTypeAndLayoutRes) {
+                           final int pos, int viewTypeAndLayoutRes, RecyclerView.ViewHolder holder) {
         if (viewTypeAndLayoutRes == R.layout.item0) {
 //                if (true) {
             helper.setImageResource(R.id.img_explore_icon0, exploreBean.getIconResId());

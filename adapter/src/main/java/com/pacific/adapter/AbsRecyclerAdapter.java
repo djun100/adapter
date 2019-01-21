@@ -57,7 +57,7 @@ public abstract class AbsRecyclerAdapter<T, H extends RecyclerAdapterHelper> ext
         H helper = getAdapterHelper(holder);
 //        H helper = (H) getAdapterHelper(holder);
         T item = get(position);
-        convert(helper, item , position,getLayoutResAsItemViewType(position));
+        convert(helper, item , position,getLayoutResAsItemViewType(position),holder);
     }
 
     @Override
@@ -184,7 +184,7 @@ public abstract class AbsRecyclerAdapter<T, H extends RecyclerAdapterHelper> ext
         }
     }
 
-    protected abstract void convert(H helper, T item,int pos,int viewTypeAndLayoutRes);
+    protected abstract void convert(H helper, T item,int pos,int viewTypeAndLayoutRes,ViewHolder holder);
 
     protected abstract H getAdapterHelper(ViewHolder viewHolder);
 
