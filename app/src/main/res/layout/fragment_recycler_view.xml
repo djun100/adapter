@@ -6,6 +6,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_explore"
         style="@style/match_match"
+        android:layout_marginBottom="10dp"
         android:scrollbars="vertical">
 
     </android.support.v7.widget.RecyclerView>

@@ -70,7 +70,7 @@ public class HorizontalItemDecoration extends RecyclerView.ItemDecoration {
         int right = parent.getMeasuredWidth() - parent.getPaddingRight()-mBuilder.marginRight;
 
         //上下需要根据每个孩子控件计算
-        for (int i = 0; i < parent.getChildCount(); i++) {
+        for (int i = 0; i < parent.getChildCount()-1; i++) {
             View child = parent.getChildAt(i);
             RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
             int top = child.getBottom() + params.bottomMargin;

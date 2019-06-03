@@ -4,12 +4,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.cy.io.Log;
 import com.pacific.adapter.BaseRecyclerAdapter;
 import com.pacific.adapter.util.HorizontalItemDecoration;
 import com.pacific.example.ExploreBean;
@@ -74,7 +74,7 @@ public class RecyclerViewFragment extends RxFragment {
                 super.onScrolled(recyclerView, dx, dy);
                 if (watch) {
                     if (timeBegin == 0) {
-                        Log.w("速度计算值初始化");
+                        Log.w("tag","速度计算值初始化");
                         timeBegin = System.currentTimeMillis();
                     } else {
                         float timeSecLasted = (System.currentTimeMillis() - timeBegin) / 1000f;
